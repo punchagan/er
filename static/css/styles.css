@@ -1,4 +1,4 @@
-html { font-size: 16px; }
+html { font-size: 18px; }
 body { color: var(--body-text-color); background-color: var(--background-color);}
 .main-color { color: var(--main-color); }
 .secondary-color { color: var(--secondary-color); }
