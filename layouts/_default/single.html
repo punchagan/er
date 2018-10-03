@@ -12,6 +12,7 @@
     {{ end }}
   </p>
   <div class="lh-copy post-content">{{ .Content }}</div>
+  {{ partial "twitter" $.Site }}
   {{ partial "mail-chimp" . }}
 </main>
 {{ partial "table-of-contents" . }}
