@@ -120,3 +120,7 @@ table tr th, table tr td {
   margin:0;
   padding:6px 13px;
 }
+.star {
+    color: var(--main-color);
+    margin-left: -1em;
+}
