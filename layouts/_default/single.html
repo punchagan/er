@@ -14,6 +14,7 @@
   <div class="lh-copy post-content">{{ .Content }}</div>
   {{ partial "twitter" $.Site }}
   {{ partial "mail-chimp" . }}
+  {{ partial "webmentions" . }}
 </main>
 {{ partial "table-of-contents" . }}
 
