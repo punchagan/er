@@ -3,6 +3,7 @@
   <div class="f3 fw6 heading-color heading-font post-title">{{ .Title }}</div>
   <p class="silver f6 mt1 mb4 post-meta">
     {{ if not .Date.IsZero }}<time>{{ .Date.Format "02 Jan 2006" }}</time> {{ end }}
+    {{ if .Params.draft }} | <strong>draft</strong>{{ end }}
     {{ if or .Params.tags .Params.categories .Params.series }} | {{ end }}
     {{ if isset .Params "categories" }}
     categories: [ {{ range .Params.categories }}<a href='{{ "/categories/" | relLangURL }}{{ . | urlize }}' class="link silver">{{ . }}</a> {{ end }} ]
