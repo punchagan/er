@@ -3,7 +3,7 @@
   <h1 class="f2 fw6 heading-font"><span class="secondary-color">#</span> {{ .Data.Term }}</h1>
   {{ .Content }}
   <ul class="list-pages">
-    {{ range .Data.Pages }}
+    {{ range .Site.Pages }}
       <li class="lh-copy"><a href="{{ .Permalink | relURL }}" class="link f5">{{ .Title }}</a> - <time>{{ .Date.Format "02 Jan 2006" }}</time></li>
     {{ end }}
   </ul>
