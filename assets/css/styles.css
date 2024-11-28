@@ -41,7 +41,7 @@ p code {
 
 p code, pre { border-radius: 4px; }
 
-#tag-cloud { max-width: 250px; }
+#tag-cloud { max-width: 250px; font-family: monospace; }
 #contents-list>.toc-list {
   max-width: 250px;
   overflow: hidden;
@@ -51,11 +51,17 @@ p code, pre { border-radius: 4px; }
 @media (min-width: 1200px) {
   #contents-list>.toc-list, #tag-cloud  {
     display: block;
-    top: 100px;
+    top: 150px;
   }
   #tag-cloud {
     -webkit-transition: opacity .5s, visibility .5s;
     transition: opacity .5s, visibility .5s;
+    /* font properties for tag cloud */
+    font-size: 14px;
+    line-height: 1;
+  }
+  #tag-cloud span {
+    font-size: larger;
   }
 }
 @media (min-width: 1330px) { #contents-list>.toc-list { max-width: 300px; right: 3rem;}}
@@ -131,6 +137,10 @@ table tr th, table tr td {
     color: var(--main-color);
     margin-left: -1em;
 }
+hr {
+  border: 0 none;
+  border-top: 1px solid var(--main-color);
+}
 
 /* embedded subscribe form styling - outside the theme */
 .mc-field-group {
@@ -143,6 +153,10 @@ table tr th, table tr td {
   height: 1.5rem;
   margin-left: 0.5rem;
   padding: 0 0.5rem;
+  background-color: var(--code-background-color);
+  /* border: 1px solid var(--secondary-color); */
+  border: 0 none;
+  color: var(--body-text-color);
 }
 
 #mc-embedded-subscribe {
@@ -214,24 +228,23 @@ label#switch_mode::after {
   transition: 0s color;
 }
 
-.post-tags {
-  /* margin-left: 0.2rem; */
-}
-
 .post-tags i.svg-icon {
   position: relative;
   top: 4px;
 }
 
-.post-tags a.link {
+.post-tags a.link,
+#tag-cloud a {
   text-decoration: none;
-  font-size: small;
   font-weight: 800;
   line-height: 1;
   display: inline-block;
   padding: 4px 2px;
-  color: var(--body-text-color);
   border-bottom: 1px solid var(--background-color);
+}
+
+.post-tags a.link {
+  color: var(--body-text-color);
 }
 
 .post-tags a.link:hover {
@@ -280,12 +293,22 @@ main>p {
   line-height: 1.67rem;
 }
 
-ul.list {
+section.post-content {
+  position: relative;
+}
+
+section.connect {
+  border: 1px solid rgba(0,0,0,0.01);
+}
+
+ul.list,
+section.connect {
   margin-top: 4rem;
   position: relative;
 }
 
-ul.list::before {
+ul.list::before,
+section.connect::before {
   position: absolute;
   content: "";
   top: -2rem;

@@ -32,4 +32,5 @@ html.dark {
   --code-background-color: #666;
   --tag-background-color: #000;
   --generic-link-color: var(--main-color);
+  --secondary-color: var(--main-color);
 }

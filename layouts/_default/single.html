@@ -1,20 +1,25 @@
 {{ define "main" }}
 <main class="center mv4 content-width ph3">
-  <div class="f3 fw6 heading-color heading-font post-title">{{ .Title }}</div>
-  <p class="silver f6 mt1 mb4 post-meta">
-    {{ if not .Date.IsZero }}<time>{{ .Date.Format "02 Jan 2006" }}</time> {{ end }}
-    {{ if .Params.draft }} | <strong>draft</strong>{{ end }}
-    {{ if or .Params.tags .Params.categories .Params.series }} | {{ end }}
-    {{ if isset .Params "categories" }}
-    categories: [ {{ range .Params.categories }}<a href='{{ "/categories/" | relLangURL }}{{ . | urlize }}' class="link silver">{{ . }}</a> {{ end }} ]
-    {{ end }}
-    {{ if isset .Params "tags" }}
-    <span class="post-tags"> {{ range .Params.tags }}<a href='{{ "/tags/" | relLangURL }}{{ . | urlize }}' class="link silver">{{ . }}</a> {{ end }} </span>
-    {{ end }}
-  </p>
-  <div class="lh-copy post-content">{{ .Content }}</div>
-  {{ partial "twitter" $.Site }}
-  {{ partial "mail-chimp" . }}
+  <section class="post-content mb4">
+    <div class="f3 fw6 heading-color heading-font post-title">{{ .Title }}</div>
+    <p class="silver f6 mt1 mb4 post-meta">
+      {{ if not .Date.IsZero }}<time>{{ .Date.Format "02 Jan 2006" }}</time> {{ end }}
+      {{ if .Params.draft }} | <strong>draft</strong>{{ end }}
+      {{ if or .Params.tags .Params.categories .Params.series }} | {{ end }}
+      {{ if isset .Params "categories" }}
+      categories: [ {{ range .Params.categories }}<a href='{{ "/categories/" | relLangURL }}{{ . | urlize }}' class="link silver">{{ . }}</a> {{ end }} ]
+      {{ end }}
+      {{ if isset .Params "tags" }}
+      <span class="post-tags"> {{ range .Params.tags }}<a href='{{ "/tags/" | relLangURL }}{{ . | urlize }}' class="link silver">{{ . }}</a> {{ end }} </span>
+      {{ end }}
+    </p>
+    <div class="lh-copy post-content">{{ .Content }}</div>
+  </section>
+
+  <section class="connect">
+    {{ partial "twitter" $.Site }}
+    {{ partial "mail-chimp" . }}
+  </section>
 </main>
 {{ partial "table-of-contents" . }}
 
