@@ -4,7 +4,7 @@ body { color: var(--body-text-color); background-color: var(--background-color);
 .main-color { color: var(--main-color); }
 .secondary-color { color: var(--secondary-color); }
 .bg-main-color { background-color: var(--main-color); color: var(--logo-text-color); }
-.heading-font, .global-font { font-family: "Source Sans Pro"; }
+.heading-font, .global-font { font-family: system-ui, -apple-system, sans-serif; }
 .heading-color { color: var(--heading-text-color); }
 .post-content a, .list-pages a, .pagination a {
   border-bottom: 1px solid var(--generic-link-color);

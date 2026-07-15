@@ -43,7 +43,6 @@
   })
 </script>
 
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
 {{ $variables := resources.Get "css/variables.css" | minify | fingerprint "sha256" }}
 {{ $tachyons := resources.Get "css/tachyons.min.css" | fingerprint "sha256" }}
 {{ $styles := resources.Get "css/styles.css" | minify | fingerprint "sha256" }}
