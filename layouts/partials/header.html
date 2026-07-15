@@ -54,12 +54,7 @@
 <link href='{{ $syntax.Permalink }}' rel="stylesheet">
 
 <!-- Icon -->
-<link rel="icon"
-{{ if .Site.Params.favicon }}
-  href="{{ .Site.Params.favicon | relURL }}"
-{{ else }}
-  href='{{ "/favicon.ico" | relURL }}'
-{{ end }}
-type="image/x-icon"/>
+{{ $favicon := .Site.Params.favicon | default "/favicon.svg" }}
+<link rel="icon" href="{{ $favicon | relURL }}" type="{{ if hasSuffix $favicon ".svg" }}image/svg+xml{{ else }}image/x-icon{{ end }}"/>
 
 <link href='{{ "/feed.xml" | relURL }}' rel="alternate" type="application/atom+xml" title="{{ .Site.Title }}" />
