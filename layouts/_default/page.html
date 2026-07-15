@@ -1,0 +1,10 @@
+{{ define "main" }}
+<main class="center mv4 content-width ph3">
+  <h1 class="f2 fw6 heading-font">{{ .Title }}</h1>
+  {{ .Content }}
+</main>
+<div class="pagination tc db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+{{ partial "back-to-top.html" . }}
+</div>
+{{ partial "tag_cloud.html" . }}
+{{ end }}
