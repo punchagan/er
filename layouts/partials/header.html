@@ -56,4 +56,6 @@
 {{ $favicon := .Site.Params.favicon | default "/favicon.svg" }}
 <link rel="icon" href="{{ $favicon | relURL }}" type="{{ if hasSuffix $favicon ".svg" }}image/svg+xml{{ else }}image/x-icon{{ end }}"/>
 
-<link href='{{ "/feed.xml" | relURL }}' rel="alternate" type="application/atom+xml" title="{{ .Site.Title }}" />
+{{ with .OutputFormats.Get "rss" }}
+<link href='{{ .Permalink }}' rel="alternate" type="{{ .MediaType.Type }}" title="{{ $.Site.Title }}" />
+{{ end }}
