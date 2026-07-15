@@ -109,24 +109,7 @@ if (document.getElementById("contents-list") !== null && document.getElementsByC
 {{end}}
 <script>
   // theme switcher
-  let d = document.documentElement;
-  let nav_menu = document.querySelector('#navbar>div:last-of-type');
-  const make = (el) => document.createElement(el);
-
-  let switcher = make('div');
-  let dark_cb = make('input');
-  dark_cb.type = 'checkbox';
-  dark_cb.id = 'theme_switcher';
-  dark_cb.setAttribute('aria-hidden', true);
-
-  let switch_label = make('label');
-  switch_label.setAttribute('for', 'theme_switcher');
-  switch_label.id = 'switch_mode';
-  switch_label.setAttribute('aria-hidden', true);
-
-  switcher.append(dark_cb);
-  switcher.append(switch_label);
-  nav_menu.append(switcher);
+  let dark_cb = document.getElementById('theme_switcher');
 
   dark_cb.checked = IS_DARK_THEME; // update checkbox state on load
 
