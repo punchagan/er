@@ -1,13 +1,13 @@
-{{ define "main" }} {{ $paginator := .Paginate (where .Site.RegularPages "Type"
-"in" .Site.Params.mainSections) }}
+{{ define "main" }}
+{{ $mainPages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+{{ $recentCount := .Site.Params.homeRecentCount | default 8 }}
 <main class="center mv4 content-width ph3">
   {{ range where .Site.Pages "Title" "Home" }} {{ .Content }} {{ end }}
+
+  <h2 class="f3 fw6 heading-font heading-color">Recent posts</h2>
   <ul class="list pa0">
-    {{ range $paginator.Pages }}
+    {{ range first $recentCount $mainPages }}
     <li class="mb2">
-      {{ if and (isset .Params "categories") (in .Params.categories "best") }}
-      <span class="star">★</span>
-      {{ end }}
       <a
         class="f4 heading-color heading-font fw6 no-underline"
         href="{{ .Permalink }}"
@@ -15,8 +15,7 @@
       >
       <p class="f5 mt1 silver post-meta">
         <time>{{ .Date.Format "02 Jan 2006" }}</time>
-        {{ if or .Params.tags .Params.categories }} | {{ end }} {{ if isset
-        .Params "tags" }} <span class="post-tags">
+        {{ if .Params.tags }} | <span class="post-tags">
         {{ range .Params.tags }}<a
           href='{{ "/tags/" | relLangURL }}{{ . | urlize }}'
           class="link silver"
@@ -26,8 +25,30 @@
     </li>
     {{ end }}
   </ul>
+  <p><a href="{{ "/blog/" | relURL }}" class="link">See the full archive &rarr;</a></p>
+
+  {{ $favourites := .Site.Taxonomies.categories.best }}
+  {{ if $favourites }}
+  <h2 class="f3 fw6 heading-font heading-color mt4">Favourites</h2>
+  <ul class="list pa0">
+    {{ range $favourites }}
+    <li class="mb2">
+      <span class="star">★</span>
+      <a
+        class="f4 heading-color heading-font fw6 no-underline"
+        href="{{ .Page.Permalink }}"
+        >{{ .Page.Title }}</a
+      >
+      <p class="f5 mt1 silver post-meta">
+        <time>{{ .Page.Date.Format "02 Jan 2006" }}</time>
+      </p>
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+
   <div class="pagination tc db fixed-l bottom-2-l right-2-l mb3 mb0-l">
     {{ partial "back-to-top.html" . }}
   </div>
 </main>
-{{ partial "tag_cloud.html" . }} {{ partial "pagination.html" . }} {{ end }}
+{{ partial "tag_cloud.html" . }} {{ end }}
