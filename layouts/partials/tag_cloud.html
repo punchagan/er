@@ -1,6 +1,6 @@
 {{ $maxtags := .Site.Params.maxTags | default 50 }}
 {{ if .Site.Params.showTagCloud | default true }}
-<div class="dn tr fixed right-2" id="tag-cloud">
+<div data-pagefind-ignore class="dn tr fixed right-2" id="tag-cloud">
     <i class="svg-icon svg-icon--fill"><svg><use xlink:href="/images/icons.svg#icon-tag" /></svg></i>
     <span class="dib mb2">tags</span> <br>
     {{ range first $maxtags .Site.Taxonomies.tags.ByCount }}
