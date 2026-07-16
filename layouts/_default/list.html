@@ -2,9 +2,27 @@
 <main class="center mv4 content-width ph3">
   <h1 class="f2 fw6 heading-font">{{ .Title }}</h1>
   {{ .Content }}
-  <ul class="list-pages">
+  <ul class="list pa0">
     {{ range .Pages }}
-      <li class="lh-copy"><a href="{{ .Permalink | relURL }}" class="link f5">{{ .Title }}</a> - <time>{{ .Date.Format "02 Jan 2006" }}</time></li>
+    <li class="mb2">
+      {{ if and (isset .Params "categories") (in .Params.categories "best") }}
+      <span class="star">★</span>
+      {{ end }}
+      <a
+        class="f4 heading-color heading-font fw6 no-underline"
+        href="{{ .Permalink }}"
+        >{{ .Title }}</a
+      >
+      <p class="f5 mt1 silver post-meta">
+        <time>{{ .Date.Format "02 Jan 2006" }}</time>
+        {{ if .Params.tags }} | <span class="post-tags">
+        {{ range .Params.tags }}<a
+          href='{{ "/tags/" | relLangURL }}{{ . | urlize }}'
+          class="link silver"
+          >{{ . }}</a>
+        {{ end }} </span> {{ end }}
+      </p>
+    </li>
     {{ end }}
   </ul>
 </main>
