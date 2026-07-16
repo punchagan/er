@@ -16,6 +16,20 @@
   --transition-1: none;
   --transition-2: background-color 500ms, color 600ms ease-in-out;
   --theme-transition: var(--transition-1); /* this value is set to transition-2 after a short delay on page load */
+
+  /* Pagefind search UI (see https://pagefind.app/docs/css-variables/) */
+  --pf-text: var(--body-text-color);
+  --pf-text-secondary: #767676;
+  --pf-text-muted: #999;
+  --pf-background: var(--background-color);
+  --pf-border: #ddd;
+  --pf-border-focus: var(--generic-link-color);
+  --pf-hover: rgba(140, 96, 86, 0.08);
+  --pf-mark: var(--secondary-color);
+  --pf-outline-focus: var(--generic-link-color);
+  --pf-font: system-ui, -apple-system, sans-serif;
+  --pf-border-radius: 6px;
+  --pf-modal-backdrop: rgba(0, 0, 0, 0.6);
 }
 
 
@@ -33,4 +47,11 @@ html.dark {
   --tag-background-color: #000;
   --generic-link-color: var(--main-color);
   --secondary-color: var(--main-color);
+
+  /* Pagefind search UI */
+  --pf-text-secondary: #bbb;
+  --pf-text-muted: #888;
+  --pf-border: #444;
+  --pf-hover: rgba(255, 255, 255, 0.08);
+  --pf-modal-backdrop: rgba(0, 0, 0, 0.75);
 }

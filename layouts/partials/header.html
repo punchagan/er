@@ -23,6 +23,7 @@
     }
 
     doc.classList.toggle('dark', IS_DARK_THEME); // using this class for toggling the visual styles
+    doc.setAttribute('data-pf-theme', IS_DARK_THEME ? 'dark' : 'light'); // for Pagefind's search UI
 
     document.addEventListener('toggle_theme', (e) =>  {
       IS_DARK_THEME = !IS_DARK_THEME; // flip it
@@ -31,6 +32,7 @@
       // doc.dataset.themeColorScheme = THEME; // add a data attrib to document root for visual ref (no longer necessary, we were earlier using this as a selector for styling)
 
       doc.classList.toggle('dark', IS_DARK_THEME);
+      doc.setAttribute('data-pf-theme', THEME);
     });
   })();
 

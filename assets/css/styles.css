@@ -220,13 +220,6 @@ label#switch_mode .icon-moon {
   display: block;
 }
 
-pagefind-modal-trigger {
-  --pagefind-ui-primary: var(--generic-link-color);
-  --pagefind-ui-text: var(--body-text-color);
-  --pagefind-ui-background: var(--background-color);
-  cursor: pointer;
-}
-
 /* post meta and post tags */
 .post-meta {
   font-family: monospace;
