@@ -4,6 +4,10 @@
 <main data-pagefind-ignore class="center mv4 content-width ph3">
   {{ range where .Site.Pages "Title" "Home" }} {{ .Content }} {{ end }}
 
+  <div data-pagefind-ignore class="mt3">
+      <pagefind-searchbox></pagefind-searchbox>
+  </div>
+
   <h2 class="f3 fw6 heading-font heading-color">Recent posts</h2>
   <ul class="list pa0">
     {{ range first $recentCount $mainPages }}
@@ -26,10 +30,6 @@
     {{ end }}
   </ul>
   <p><a href="{{ "/blog/" | relURL }}" class="link">See the full archive &rarr;</a></p>
-
-  <div data-pagefind-ignore class="mt3">
-    <pagefind-searchbox></pagefind-searchbox>
-  </div>
 
   {{ $favourites := .Site.Taxonomies.categories.best }}
   {{ if $favourites }}
