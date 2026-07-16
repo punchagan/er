@@ -171,7 +171,6 @@ hr {
   gap: 1rem;
 }
 
-/* theme switcher styles */
 /* visually hidden, but still reachable/announced by keyboard & screen readers
    (unlike visibility:hidden/display:none, which remove it from both) */
 #theme_switcher {
@@ -185,6 +184,8 @@ hr {
   white-space: nowrap;
   border: 0;
 }
+
+/* theme switcher styles */
 
 #theme-switcher-wrapper {
   display: flex;
@@ -217,6 +218,13 @@ label#switch_mode .icon-moon {
 
 #theme_switcher:checked~label#switch_mode .icon-moon {
   display: block;
+}
+
+pagefind-modal-trigger {
+  --pagefind-ui-primary: var(--generic-link-color);
+  --pagefind-ui-text: var(--body-text-color);
+  --pagefind-ui-background: var(--background-color);
+  cursor: pointer;
 }
 
 /* post meta and post tags */

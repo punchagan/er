@@ -122,3 +122,9 @@ if (document.getElementById("contents-list") !== null && document.getElementsByC
     // listener for this is already registered in the head. See partials/header.html
   });
 </script>
+
+<!-- Only present once ./pagefind.sh has indexed a real build (see deploy.sh);
+     absent in `hugo server` dev mode. The custom elements simply do nothing
+     if this script never loads. -->
+<link href="{{ "/pagefind/pagefind-component-ui.css" | relURL }}" rel="stylesheet">
+<script src="{{ "/pagefind/pagefind-component-ui.js" | relURL }}" type="module"></script>
