@@ -3,4 +3,7 @@
     {{ partial "indieweb.html" .Site }}
     Powered by <a href="https://gohugo.io/" target="_blank" class="link gray dim">Hugo</a>, based on the <a href="https://github.com/punchagan/er" target="_blank" class="link gray dim">Er</a> theme. <br>
     {{ with .Site.Copyright }}{{ . }}{{end}}
+    <div class="mt2">
+      {{ partial "rc-scout.html" . }}
+    </div>
 </footer>
