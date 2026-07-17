@@ -46,7 +46,11 @@ html.dark {
   --code-background-color: #666;
   --tag-background-color: #000;
   --generic-link-color: var(--main-color);
-  --secondary-color: var(--main-color);
+  /* Deeper/desaturated version of the light-mode sage green, not just
+     var(--main-color) - it needs to hold text on top of it (TOC active
+     link, Pagefind match highlight) and near-white body text on the
+     original pastel green would be unreadable. */
+  --secondary-color: #3f6b4f;
 
   /* Pagefind search UI */
   --pf-text-secondary: #bbb;
