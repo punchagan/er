@@ -10,7 +10,7 @@
       {{ else if ge .Count 10 }}{{ $tier = "tag-tier-2" }}
       {{ else if ge .Count 3 }}{{ $tier = "tag-tier-3" }}
       {{ end }}
-      <li class="lh-copy di bg-light-gray ph1"><a href="{{ .Name | urlize }}" class="link {{ $tier }}">{{ .Name }}&nbsp;({{ .Count }})</a></li>
+      <li class="lh-copy di ph1"><a href="{{ .Name | urlize }}" class="link {{ $tier }}">{{ .Name }}&nbsp;({{ .Count }})</a></li>
     {{ end }}
   </ul>
 </main>
