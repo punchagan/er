@@ -2,6 +2,7 @@
 <main data-pagefind-ignore class="center mv4 content-width ph3">
   <h1 class="f2 fw6 heading-font">{{ .Title }}</h1>
   {{ .Content }}
+  {{ if eq .Kind "section" }}
   {{ $lastYear := "" }}
   {{ range .Pages }}
   {{ $year := .Date.Format "2006" }}
@@ -11,27 +12,16 @@
     <ul class="pa0 year-posts">
     {{ $lastYear = $year }}
   {{ end }}
-    <li class="mb2">
-      {{ if and (isset .Params "categories") (in .Params.categories "best") }}
-      <span class="star">★</span>
-      {{ end }}
-      <a
-        class="f4 heading-color heading-font fw6 no-underline"
-        href="{{ .Permalink }}"
-        >{{ .Title }}</a
-      >
-      <p class="f5 mt1 silver post-meta">
-        <time>{{ .Date.Format "02 Jan 2006" }}</time>
-        {{ if .Params.tags }} | <span class="post-tags">
-        {{ range .Params.tags }}<a
-          href='{{ "/tags/" | relLangURL }}{{ . | urlize }}'
-          class="link silver"
-          >{{ . }}</a>
-        {{ end }} </span> {{ end }}
-      </p>
-    </li>
+    {{ partial "post-list-item.html" . }}
   {{ end }}
   {{ if $lastYear }}</ul>{{ end }}
+  {{ else }}
+  <ul class="pa0 year-posts">
+    {{ range .Pages }}
+    {{ partial "post-list-item.html" . }}
+    {{ end }}
+  </ul>
+  {{ end }}
 </main>
 <div class="pagination tc db fixed-l bottom-2-l right-2-l mb3 mb0-l">
 {{ partial "back-to-top.html" . }}

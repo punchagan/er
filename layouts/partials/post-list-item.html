@@ -1,0 +1,19 @@
+<li class="mb2">
+  {{ if and (isset .Params "categories") (in .Params.categories "best") }}
+  <span class="star">★</span>
+  {{ end }}
+  <a
+    class="f4 heading-color heading-font fw6 no-underline"
+    href="{{ .Permalink }}"
+    >{{ .Title }}</a
+  >
+  <p class="f5 mt1 silver post-meta">
+    <time>{{ .Date.Format "02 Jan 2006" }}</time>
+    {{ if .Params.tags }} | <span class="post-tags">
+    {{ range .Params.tags }}<a
+      href='{{ "/tags/" | relLangURL }}{{ . | urlize }}'
+      class="link silver"
+      >{{ . }}</a>
+    {{ end }} </span> {{ end }}
+  </p>
+</li>
