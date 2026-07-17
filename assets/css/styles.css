@@ -409,6 +409,9 @@ html { scroll-behavior: smooth; }
 }
 
 /* /tags/ visual weight bands, by post count - see terms.html */
+.tag-tier-1, .tag-tier-2, .tag-tier-3, .tag-tier-4 {
+  white-space: nowrap;
+}
 .tag-tier-1 {
   font-size: 1.25rem;
   font-weight: 700;
