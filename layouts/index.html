@@ -17,7 +17,7 @@
         href="{{ .Permalink }}"
         >{{ .Title }}</a
       >
-      <p class="f5 mt1 silver post-meta">
+      <p class="f5 mt1 mb0 silver post-meta">
         <time>{{ .Date.Format "02 Jan 2006" }}</time>
         {{ if .Params.tags }} | <span class="post-tags">
         {{ range .Params.tags }}<a
@@ -26,6 +26,7 @@
           >{{ . }}</a>
         {{ end }} </span> {{ end }}
       </p>
+      {{ with .Page.Params.description }}<p class="f6 mt1 i">{{ . }}</p>{{ end }}
     </li>
     {{ end }}
   </ul>
@@ -43,9 +44,15 @@
         href="{{ .Page.Permalink }}"
         >{{ .Page.Title }}</a
       >
-      <p class="f5 mt1 silver post-meta">
-        <time>{{ .Page.Date.Format "02 Jan 2006" }}</time>
+      <p class="f5 mt1 mb0 silver post-meta">
+          <time>{{ .Page.Date.Format "02 Jan 2006" }}</time>
+          {{ if .Params.tags }} | <span class="post-tags">
+          {{ range .Params.tags }}
+          <a href='{{ "/tags/" | relLangURL }}{{ . | urlize }}' class="link silver">{{ . }}</a>
+          {{ end }} </span>
+          {{ end }}
       </p>
+      {{ with .Page.Params.description }}<p class="f6 mt1 i">{{ . }}</p>{{ end }}
     </li>
     {{ end }}
   </ul>
