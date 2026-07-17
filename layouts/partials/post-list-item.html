@@ -7,7 +7,7 @@
     href="{{ .Permalink }}"
     >{{ .Title }}</a
   >
-  <p class="f5 mt1 silver post-meta">
+  <p class="f5 mt1 mb0 silver post-meta">
     <time>{{ .Date.Format "02 Jan 2006" }}</time>
     {{ if .Params.tags }} | <span class="post-tags">
     {{ range .Params.tags }}<a
@@ -16,4 +16,5 @@
       >{{ . }}</a>
     {{ end }} </span> {{ end }}
   </p>
+  {{ with .Params.description }}<p class="post-description mt0 i">{{ . }}</p>{{ end }}
 </li>
