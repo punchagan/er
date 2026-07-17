@@ -415,3 +415,10 @@ html { scroll-behavior: smooth; }
   font-weight: 400;
   opacity: 0.6;
 }
+
+/* homepage/favourites one-line description blurb - smaller than
+   Tachyons' smallest step (f7, 0.75rem) since it's meant to read as a
+   quiet aside under the date/tags line, not compete with it */
+.post-description {
+  font-size: 0.7rem;
+}
