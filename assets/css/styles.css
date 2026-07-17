@@ -311,17 +311,8 @@ i.svg-icon.svg-icon--fill svg {
 /* top heading styles */
 main.center>h1:first-of-type {
   font-weight: 900;
-  font-size: 4rem;
-  color: var(--background-color);
-  --detail-color: var(--generic-link-color);
-    text-shadow: 1px 1px 0 var(--detail-color),
-      -1px -1px 0 var(--detail-color),
-      -1px 1px 0 var(--detail-color),
-      1px -1px 0 var(--detail-color),
-      0 1px 0 var(--detail-color),
-      0 -1px 0 var(--detail-color),
-      -1px 0 0 var(--detail-color),
-      1px 0 0 var(--detail-color)
+  font-size: 2.5rem;
+  color: var(--generic-link-color);
 }
 
 main > h1:first-of-type > span {
@@ -362,7 +353,7 @@ section.connect::before {
 
 @media screen and (max-width: 420px) {
   main.center>h1:first-of-type {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 }
 
