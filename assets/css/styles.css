@@ -192,20 +192,50 @@ hr {
   border: 0;
 }
 
+/* Nav menu links, search, RSS and theme toggle all sit in one flex row -
+   a single gap replaces the old per-item mr2/mr3-l/ml3 margins, which had
+   grown inconsistent (some items had none, some compounded with a
+   neighbour's margin into a larger gap than the rest). */
+.nav-right {
+  gap: 0.5rem;
+}
+@media (min-width: 60em) {
+  .nav-right {
+    gap: 1rem;
+  }
+}
+
 /* theme switcher styles */
 
 #theme-switcher-wrapper {
   display: flex;
   align-items: center;
-  padding-right: 0.5rem;
 }
 
 .theme-icon {
-  width: 1rem;
-  height: 1rem;
+  width: 16px;
+  height: 16px;
   flex: none;
   color: var(--body-text-color);
   opacity: 0.7;
+}
+
+/* Nav utility icons (search, RSS, theme toggle) - same size, color and
+   vertical alignment, so they read as one consistent icon strip instead
+   of three unrelated widgets. */
+.nav-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+}
+.nav-icon-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--body-text-color);
+  opacity: 0.7;
+}
+.nav-icon {
+  width: 16px;
+  height: 16px;
 }
 
 label#switch_mode {
@@ -351,6 +381,26 @@ html { scroll-behavior: smooth; }
   transition: background-color 200ms ease-in-out;
   /* source-ordering issue: had to use !important because tocbot styles
   load last and take precedence over these otherwise */
+}
+
+/* Pagefind search trigger - strip its default bordered-input look so it
+   matches the bare RSS/theme-toggle icons next to it in the nav. Needs
+   !important for the same reason as .is-active-link above: pagefind's own
+   CSS loads after ours and boosts its own specificity via :is(*, #\#). */
+.pf-trigger-btn {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  height: auto !important;
+  gap: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+.pf-trigger-icon {
+  width: 16px !important;
+  height: 16px !important;
+  background: var(--body-text-color) !important;
+  opacity: 0.7;
 }
 .list-pages a {
   border-bottom: none;

@@ -2,26 +2,24 @@
   <div class="flex">
     <a class="f4 fw6 ttu no-underline dim bg-main-color pv1 ph2 br2" id="site-title" href='{{ "" | relURL }}' title="Home">{{ .Site.Title }}</a>
   </div>
-  <div class="flex flex-wrap items-center">
+  <div class="flex flex-wrap items-center nav-right">
   {{ with .Site.Menus.main }}
-  <div class="flex flex-wrap pv1">
     {{ range . }}
-      <a class="link dim f6 dib mr2 mr3-l ttu tracked" href='{{.URL}}' title="{{ .Name }}">{{ .Name }}</a>
+      <a class="link dim f6 dib ttu tracked" href='{{.URL}}' title="{{ .Name }}">{{ .Name }}</a>
     {{ end }}
-  </div>
   {{ end }}
-  <span data-pagefind-ignore>
-    <pagefind-modal-trigger></pagefind-modal-trigger>
+  <span data-pagefind-ignore class="nav-icon-wrap dim">
+    <pagefind-modal-trigger compact hide-shortcut></pagefind-modal-trigger>
     <pagefind-modal></pagefind-modal>
   </span>
   {{ with .Site.Home.OutputFormats.Get "rss" }}
-  <a href='{{ .Permalink }}' class="link dim f6 dib mr2 ml3" title="RSS feed" aria-label="RSS feed">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+  <a href='{{ .Permalink }}' class="link dim f6 dib nav-icon-link" title="RSS feed" aria-label="RSS feed">
+    <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
   </a>
   {{ end }}
-  <div id="theme-switcher-wrapper" class="ml3">
+  <div id="theme-switcher-wrapper">
     <input type="checkbox" id="theme_switcher" aria-label="Toggle dark mode">
-    <label for="theme_switcher" id="switch_mode">
+    <label for="theme_switcher" id="switch_mode" class="dim">
       <svg class="theme-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="5"></circle>
         <line x1="12" y1="1" x2="12" y2="3"></line>
