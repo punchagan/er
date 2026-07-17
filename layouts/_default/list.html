@@ -2,8 +2,15 @@
 <main data-pagefind-ignore class="center mv4 content-width ph3">
   <h1 class="f2 fw6 heading-font">{{ .Title }}</h1>
   {{ .Content }}
-  <ul class="list pa0">
-    {{ range .Pages }}
+  {{ $lastYear := "" }}
+  {{ range .Pages }}
+  {{ $year := .Date.Format "2006" }}
+  {{ if ne $year $lastYear }}
+    {{ if $lastYear }}</ul>{{ end }}
+    <h3 class="f4 fw6 heading-font heading-color mt4 mb2">{{ $year }}</h3>
+    <ul class="pa0 year-posts">
+    {{ $lastYear = $year }}
+  {{ end }}
     <li class="mb2">
       {{ if and (isset .Params "categories") (in .Params.categories "best") }}
       <span class="star">★</span>
@@ -23,8 +30,8 @@
         {{ end }} </span> {{ end }}
       </p>
     </li>
-    {{ end }}
-  </ul>
+  {{ end }}
+  {{ if $lastYear }}</ul>{{ end }}
 </main>
 <div class="pagination tc db fixed-l bottom-2-l right-2-l mb3 mb0-l">
 {{ partial "back-to-top.html" . }}
