@@ -4,8 +4,13 @@
   <h1 class="f2 fw6 heading-font">{{ .Title }}</h1>
   {{ .Content }}
   <ul class="list-pages list pl0">
-    {{ range $key, $value := .Data.Terms }}
-      <li class="lh-copy di bg-light-gray ph1"><a href="{{ $key | urlize }}" class="link f5">{{ $key }}&nbsp;({{ len $value }})</a></li>
+    {{ range .Data.Terms.ByCount }}
+      {{ $tier := "tag-tier-4" }}
+      {{ if ge .Count 30 }}{{ $tier = "tag-tier-1" }}
+      {{ else if ge .Count 10 }}{{ $tier = "tag-tier-2" }}
+      {{ else if ge .Count 3 }}{{ $tier = "tag-tier-3" }}
+      {{ end }}
+      <li class="lh-copy di bg-light-gray ph1"><a href="{{ .Name | urlize }}" class="link {{ $tier }}">{{ .Name }}&nbsp;({{ .Count }})</a></li>
     {{ end }}
   </ul>
 </main>

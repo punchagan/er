@@ -405,3 +405,22 @@ html { scroll-behavior: smooth; }
 .list-pages a {
   border-bottom: none;
 }
+
+/* /tags/ visual weight bands, by post count - see terms.html */
+.tag-tier-1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.tag-tier-2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.tag-tier-3 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.tag-tier-4 {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.6;
+}
