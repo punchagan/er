@@ -13,7 +13,7 @@
       <span class="post-tags"> {{ range .Params.tags }}<a href='{{ "/tags/" | relLangURL }}{{ . | urlize }}' class="link silver">{{ . }}</a> {{ end }} </span>
       {{ end }}
     </p>
-    <div class="lh-copy post-content">{{ .Content }}</div>
+    <div class="lh-copy post-content prose">{{ .Content }}</div>
   </section>
 
   <section class="connect">

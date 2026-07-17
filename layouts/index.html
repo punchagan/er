@@ -2,7 +2,7 @@
 {{ $mainPages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
 {{ $recentCount := .Site.Params.homeRecentCount | default 8 }}
 <main data-pagefind-ignore class="center mv4 content-width ph3">
-  {{ range where .Site.Pages "Title" "Home" }} {{ .Content }} {{ end }}
+  <div class="prose">{{ range where .Site.Pages "Title" "Home" }} {{ .Content }} {{ end }}</div>
 
   <div data-pagefind-ignore class="mt3">
       <pagefind-searchbox></pagefind-searchbox>
