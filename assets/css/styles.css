@@ -278,7 +278,6 @@ i.svg-icon.svg-icon--fill svg {
 }
 
 /* top heading styles */
-#welcome-to-punchagans-blog,
 main.center>h1:first-of-type {
   font-weight: 900;
   font-size: 4rem;
@@ -331,7 +330,6 @@ section.connect::before {
 }
 
 @media screen and (max-width: 420px) {
-  #welcome-to-punchagans-blog,
   main.center>h1:first-of-type {
     font-size: 2rem;
   }
