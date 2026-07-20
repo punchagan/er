@@ -1,15 +1,48 @@
+/* Self-hosted fonts - system-ui looks inconsistent across platforms (blocky
+   on stock Linux/GTK setups without Cantarell/Noto). Inter and Source Serif 4
+   are both variable fonts (single file covers the whole weight range),
+   latin-only subset, served from /fonts/ so rendering is the same everywhere. */
+@font-face {
+  font-family: "Inter var";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-var.woff2") format("woff2-variations"), url("/fonts/inter-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter var";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-var-italic.woff2") format("woff2-variations"), url("/fonts/inter-var-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif var";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("/fonts/source-serif-var.woff2") format("woff2-variations"), url("/fonts/source-serif-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif var";
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("/fonts/source-serif-var-italic.woff2") format("woff2-variations"), url("/fonts/source-serif-var-italic.woff2") format("woff2");
+}
+
 html { font-size: 18px; }
 body { color: var(--body-text-color); background-color: var(--background-color);
   transition: var(--theme-transition); }
 .main-color { color: var(--main-color); }
 .secondary-color { color: var(--secondary-color); }
 .bg-main-color { background-color: var(--main-color); color: var(--logo-text-color); }
-.heading-font, .global-font { font-family: system-ui, -apple-system, sans-serif; }
+.heading-font, .global-font { font-family: "Inter var", system-ui, -apple-system, sans-serif; }
 .prose {
-  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  font-family: "Source Serif var", Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
 }
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: "Inter var", system-ui, -apple-system, sans-serif;
 }
 .heading-color { color: var(--heading-text-color); }
 .post-content a, .list-pages a, .pagination a {
