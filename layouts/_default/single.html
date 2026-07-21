@@ -16,9 +16,7 @@
     <div class="lh-copy post-content prose">{{ .Content }}</div>
   </section>
 
-  <section class="connect">
-    {{ partial "mail-chimp" . }}
-  </section>
+  {{ partial "connect" . }}
 </main>
 {{ partial "table-of-contents" . }}
 

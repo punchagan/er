@@ -1,0 +1,8 @@
+{{/* Optional - no-ops for sites that don't set an email in [Params]. */}}
+{{ with .Site.Params.email }}
+<section class="connect">
+  <p class="f5 mb2">
+    Feel free to send me an <a href="mailto:{{ . }}" class="link">email</a> with your comments.
+  </p>
+</section>
+{{ end }}
