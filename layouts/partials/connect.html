@@ -1,8 +1,69 @@
-{{/* Optional - no-ops for sites that don't set an email in [Params]. */}}
-{{ with .Site.Params.email }}
+{{/* Optional - no-ops for sites that don't set params in [Params]. */}}
+{{ $email := .Site.Params.email }}
+{{ $formAction := .Site.Params.signup_form_action }}
+{{ $formNameField := .Site.Params.signup_form_name_field }}
+{{ $formEmailField := .Site.Params.signup_form_email_field }}
+{{ if or $email $formAction }}
 <section class="connect">
+  {{ with $email }}
   <p class="f5 mb2">
     Feel free to send me an <a href="mailto:{{ . }}" class="link">email</a> with your comments.
   </p>
+  {{ end }}
+  {{ if and $formAction $formEmailField }}
+  <p class="f5 mb2">Want a weekly digest of these blog posts?</p>
+  <form id="signup-form" class="signup-field-group">
+    {{/* Honeypot: real visitors never see or fill this in (off-screen, not
+         display:none - some bots specifically skip display:none fields but
+         still fill absolutely-positioned ones). Same technique the old
+         Mailchimp embed used. Not one of the Form's real questions, so it's
+         never submitted - just checked client-side to silently drop the
+         submission. */}}
+    <input
+      type="text"
+      id="signup-honeypot"
+      name="honeypot"
+      style="position: absolute; left: -5000px;"
+      tabindex="-1"
+      autocomplete="off"
+      aria-hidden="true"
+    >
+    {{ with $formNameField }}
+    <input type="text" id="signup-name" placeholder="Name*" required>
+    {{ end }}
+    <input type="email" id="signup-email" placeholder="Email Address*" required>
+    <input type="submit" value="Subscribe" id="signup-submit" class="dim">
+  </form>
+  <p class="f5 mb2 dn" id="signup-thanks">Thanks - you're signed up!</p>
+  <script>
+    (function () {
+      var form = document.getElementById("signup-form");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (document.getElementById("signup-honeypot").value) return;
+
+        var data = new FormData();
+        {{ with $formNameField }}
+        data.append("{{ . }}", document.getElementById("signup-name").value);
+        {{ end }}
+        data.append(
+          "{{ $formEmailField }}",
+          document.getElementById("signup-email").value
+        );
+        // Google Forms doesn't allow CORS, so the response is opaque, but
+        // the submission still goes through - see
+        // https://baali.muse-amuse.in/posts/collecting-user-feedback.html
+        fetch("{{ $formAction }}", {
+          method: "POST",
+          mode: "no-cors",
+          body: data,
+        });
+
+        form.classList.add("dn");
+        document.getElementById("signup-thanks").classList.remove("dn");
+      });
+    })();
+  </script>
+  {{ end }}
 </section>
 {{ end }}

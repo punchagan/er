@@ -182,6 +182,41 @@ hr {
   border-top: 1px solid var(--main-color);
 }
 
+/* newsletter signup form - see layouts/partials/connect.html */
+.signup-field-group {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#signup-name,
+#signup-email {
+  height: 1.75rem;
+  padding: 0 0.5rem;
+  min-width: 12rem;
+  background: transparent;
+  border: 0 none;
+  border-bottom: 1px solid var(--pf-border);
+  color: var(--body-text-color);
+  font-size: 0.85rem;
+}
+
+#signup-name::placeholder,
+#signup-email::placeholder {
+  color: var(--pf-text-muted);
+}
+
+#signup-submit {
+  background-color: var(--main-color);
+  color: var(--logo-text-color);
+  border: 0 none;
+  border-radius: 0.25rem;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
 .pv1 {
   display: flex;
   flex-flow: row nowrap;
