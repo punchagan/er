@@ -146,6 +146,34 @@ blockquote p>cite {
   display: block;
 }
 
+/* asides - editorial side notes, set apart from the main text but not a
+   quote (that's blockquote's job, with its secondary-color/sage border) -
+   so this leans on the main-color accent instead, plus a tinted
+   background rather than blockquote's plain border-only treatment, to
+   read as a distinct kind of aside content at a glance. */
+aside {
+  margin: 2em 0;
+  padding: 1rem 1.25rem;
+  background-color: var(--aside-background);
+  border-left: 0.25rem solid var(--main-color);
+  border-radius: 4px;
+}
+
+aside p:first-child { margin-top: 0; }
+aside p:last-child { margin-bottom: 0; }
+
+aside::before {
+  content: "Aside";
+  display: block;
+  font-family: "Inter var", system-ui, -apple-system, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--main-color);
+  margin-bottom: 0.5rem;
+}
+
 table {
   font-size: 14px;
   border-collapse:collapse;

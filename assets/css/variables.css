@@ -30,6 +30,11 @@
   --pf-font: system-ui, -apple-system, sans-serif;
   --pf-border-radius: 6px;
   --pf-modal-backdrop: rgba(0, 0, 0, 0.6);
+
+  /* aside background: same rgba(main-color) tint --pf-hover already uses,
+     just faint enough to sit as a tint behind body text rather than a
+     hover highlight */
+  --aside-background: rgba(140, 96, 86, 0.06);
 }
 
 
@@ -58,4 +63,9 @@ html.dark {
   --pf-border: #444;
   --pf-hover: rgba(255, 255, 255, 0.08);
   --pf-modal-backdrop: rgba(0, 0, 0, 0.75);
+
+  /* main-color's light-mode tint reads as almost nothing against the dark
+     background, so switch to a pale wash instead - same idea (a faint
+     tint, not a hover state), just visible at this end of the scale */
+  --aside-background: rgba(255, 255, 255, 0.05);
 }
