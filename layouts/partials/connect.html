@@ -29,8 +29,10 @@
       aria-hidden="true"
     >
     {{ with $formNameField }}
+    <label for="signup-name" class="visually-hidden">Name</label>
     <input type="text" id="signup-name" placeholder="Name*" required>
     {{ end }}
+    <label for="signup-email" class="visually-hidden">Email Address</label>
     <input type="email" id="signup-email" placeholder="Email Address*" required>
     <input type="submit" value="Subscribe" id="signup-submit" class="dim">
   </form>

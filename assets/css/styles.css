@@ -235,6 +235,26 @@ hr {
   color: var(--pf-text-muted);
 }
 
+/* visually hidden, but still reachable/announced by keyboard & screen
+   readers (unlike visibility:hidden/display:none, which remove it from
+   both) - same technique #theme_switcher uses, pulled out into a
+   reusable class for the signup form's <label>s below, which exist for
+   accessibility only: placeholder text isn't a substitute for a real
+   label (it disappears once typing starts, and isn't a reliable
+   accessible name across all screen readers) but the compact inline
+   layout here doesn't have room for visible ones. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 #signup-submit {
   background-color: var(--main-color);
   color: var(--logo-text-color);
