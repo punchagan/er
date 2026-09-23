@@ -1,0 +1,37 @@
+{{- /*
+  Related posts, by shared tags - requires at least 3 shared tags,
+  rather than Hugo's built-in .Related()/[related] scoring. That
+  couldn't tell "3+ tags shared for a reason" apart from "2 shared by
+  coincidence" (e.g. a decade-old ultimate frisbee post and an unrelated
+  weekly both happening to carry "culture" and "india") - raising
+  Hugo's own threshold config all the way to 100 (its max) still didn't
+  filter that case out, so this does the filtering itself with a plain
+  tag-intersection count instead.
+
+  Scoped to .Site.RegularPages with Section "blog" so book_notes/etc.
+  never show up under a blog post.
+*/ -}}
+{{- $tags := .Params.tags -}}
+{{- $self := . -}}
+{{- $matches := slice -}}
+{{- if $tags -}}
+  {{- range where .Site.RegularPages "Section" "blog" -}}
+    {{- if ne . $self -}}
+      {{- $shared := intersect $tags .Params.tags -}}
+      {{- if ge (len $shared) 3 -}}
+        {{- $matches = $matches | append (dict "page" . "count" (len $shared)) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $matches = sort $matches "count" "desc" -}}
+{{- if $matches }}
+<section class="related-posts mt4 pt3">
+  <p class="f5 fw6 heading-color heading-font mb2">Related posts</p>
+  <ul class="list pl0">
+    {{- range first 5 $matches }}
+    {{ partial "post-list-item.html" .page }}
+    {{- end }}
+  </ul>
+</section>
+{{- end }}

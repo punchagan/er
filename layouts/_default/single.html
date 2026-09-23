@@ -14,6 +14,7 @@
       {{ end }}
     </p>
     <div class="lh-copy post-content prose">{{ .Content }}</div>
+    {{ if eq .Section "blog" }}{{ partial "related-posts.html" . }}{{ end }}
   </section>
 
   {{ partial "connect" . }}
