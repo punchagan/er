@@ -120,6 +120,14 @@ figcaption {
   text-align: center;
   margin-top: 0.5em;
 }
+/* Hugo's built-in figure shortcode wraps the title in an <h4>, which
+   otherwise picks up the global heading style (bold, --main-color) -
+   too loud for what's meant to be a caption. */
+figcaption h4 {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--pf-text-secondary);
+}
 
 blockquote {
   border-left-style: solid;
