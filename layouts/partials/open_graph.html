@@ -8,7 +8,19 @@
   <meta content='{{ .Title }} - {{ .Site.Title }}' property='og:title' />
 {{ end }}
 
-<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
+{{- /* Weeklies have no `description` (the title carries the teaser), so
+       their preview is the post's section headings - the first paragraph of
+       each list item - e.g. "Delhi and AQI · Movies & More · Workouts".
+       Everything else is unchanged: description, else summary. */ -}}
+{{- $desc := .Description -}}
+{{- if and (not $desc) .IsPage (in (.Params.tags | default slice) "weekly") -}}
+  {{- $heads := slice -}}
+  {{- range findRESubmatch `(?s)<li>\s*<p>(.*?)</p>` .Content -}}
+    {{- $heads = $heads | append (index . 1 | plainify | htmlUnescape | replaceRE `\s+` " ") -}}
+  {{- end -}}
+  {{- $desc = delimit $heads " · " | truncate 240 -}}
+{{- end -}}
+<meta property="og:description" content="{{ with $desc }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 {{ with .Params.images }}{{ range first 6 . }}
