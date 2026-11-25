@@ -128,3 +128,35 @@ if (document.getElementById("contents-list") !== null && document.getElementsByC
      if this script never loads. -->
 <link href="{{ "/pagefind/pagefind-component-ui.css" | relURL }}" rel="stylesheet">
 <script src="{{ "/pagefind/pagefind-component-ui.js" | relURL }}" type="module"></script>
+
+{{- /* Lightbox for photos (figure shortcode output). GLightbox 3.3.1, vendored
+       (MIT, see assets/js/glightbox.LICENSE); only loaded on pages that
+       actually contain a figure. Plain <a href="full image"> links remain the
+       fallback without JS. Selector-based, so the markup stays clean for the
+       newsletter. Figures in the same photo list form one swipeable gallery. */ -}}
+{{ if in .Content "<figure" }}
+{{ $glJS := resources.Get "js/glightbox.min.js" | fingerprint "sha256" }}
+{{ $glCSS := resources.Get "css/glightbox.min.css" | fingerprint "sha256" }}
+<link rel="stylesheet" href="{{ $glCSS.Permalink }}">
+<script src="{{ $glJS.Permalink }}"></script>
+<script>
+  // One lightbox group per photo list (same shape styles.css treats as a
+  // gallery); a figure outside such a list is its own group.
+  var lists = [];
+  document.querySelectorAll('.post-content figure > a').forEach(function (a, i) {
+    var fig = a.parentElement;
+    var cap = fig.querySelector('figcaption');
+    var opts = cap ? 'title: ' + cap.textContent.trim().replace(/;/g, ',') : '';
+    var list = fig.parentElement.parentElement;
+    var isGallery = fig.parentElement.tagName === 'LI' && fig.parentElement.children.length === 1 && list.tagName === 'UL';
+    var group = 'single-' + i;
+    if (isGallery) {
+      if (lists.indexOf(list) < 0) lists.push(list);
+      group = 'list-' + lists.indexOf(list);
+    }
+    a.setAttribute('data-gallery', group);
+    if (opts) a.setAttribute('data-glightbox', opts);
+  });
+  GLightbox({ selector: '.post-content figure > a', touchNavigation: true, loop: false });
+</script>
+{{ end }}

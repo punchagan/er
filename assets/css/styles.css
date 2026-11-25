@@ -129,44 +129,61 @@ figcaption h4 {
   color: var(--pf-text-secondary);
 }
 
+/* Single photos: full column width, but capped in height so a portrait
+   phone photo doesn't fill several screens. Overrides the width/height
+   attributes the figure shortcode emits (see layouts/shortcodes/figure.html). */
+figure img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 75vh;
+}
+.post-content figure a, main figure a:hover {
+  display: block;
+  line-height: 0;
+  border-bottom: none;
+  background: none;
+}
+figcaption {
+  line-height: 1.4;
+}
+
 /* image galleries - writing a plain list of images in org (one image link
    per list item, see e.g. weekly posts) makes ox-hugo emit a <ul> of
-   <li><figure>...</figure></li>. Style that specific shape as a horizontal
-   scrolling row instead of stacking each figure full-width, without
-   needing a dedicated shortcode. */
+   <li><figure>...</figure></li>. Style that specific shape as justified
+   rows (like Flickr/Google Photos): each figure grows in proportion to its
+   aspect ratio (--ar, set by the figure shortcode), so every image in a row
+   ends up the same height and the row fills the width. Landscape shots get
+   more room than portrait ones; no JS, no cropping. */
 .post-content ul:has(> li > figure:only-child) {
   display: flex;
-  overflow-x: auto;
-  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
   list-style: none;
-  margin: 2em -1rem;
-  padding: 0.5rem 1rem 1rem;
-  scroll-snap-type: x mandatory;
-  scroll-padding: 1rem;
-  /* thin, theme-colored scrollbar instead of the chunky OS default -
-     supported in Firefox directly, and in Chromium/Safari via the
-     ::-webkit- rules below. */
-  scrollbar-width: thin;
-  scrollbar-color: var(--secondary-color) transparent;
-}
-.post-content ul:has(> li > figure:only-child)::-webkit-scrollbar {
-  height: 6px;
-}
-.post-content ul:has(> li > figure:only-child)::-webkit-scrollbar-thumb {
-  background-color: var(--secondary-color);
-  border-radius: 3px;
+  margin: 2em 0;
+  padding: 0;
 }
 .post-content ul:has(> li > figure:only-child) > li {
-  flex: none;
-  scroll-snap-align: center;
+  display: contents;
 }
 .post-content ul:has(> li > figure:only-child) figure {
   margin: 0;
+  /* target row height ~180px: basis = ratio * 180px. max-width caps the
+     row height at ~320px so a figure that ends up alone on its row
+     doesn't balloon. */
+  flex: calc(var(--ar, 1)) 1 calc(var(--ar, 1) * 180px);
+  max-width: calc(var(--ar, 1) * 320px);
+  min-width: 0;
 }
 .post-content ul:has(> li > figure:only-child) img {
-  max-height: 300px;
-  width: auto;
+  width: 100%;
+  max-height: none;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+.post-content ul:has(> li > figure:only-child) figcaption h4 {
+  font-size: 0.8em;
 }
 
 blockquote {
